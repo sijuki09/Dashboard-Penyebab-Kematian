@@ -3,9 +3,9 @@
 > Dashboard interaktif yang memvisualisasikan data tren dan penyebab kematian di Indonesia berdasarkan data resmi Profil Kesehatan Kementerian Kesehatan RI tahun 2000–2021.
 
 ## Isi Dashboard
-- **Chart 1: Tren Kematian Tahunan (Line Chart)** — Menampilkan pergerakan total kematian dari tahun ke tahun secara keseluruhan maupun terbagi berdasarkan kategori (Penyakit & Bencana Non-Alam, Bencana Alam, dan Bencana Sosial).
-- **Chart 2: Proporsi Kategori Kematian (Doughnut Chart)** — Menampilkan persentase perbandingan antara kategori penyebab kematian di Indonesia.
-- **Chart 3: 10 Penyebab Kematian Terbesar (Horizontal Bar Chart)** — Peringkat 10 penyebab kematian spesifik dengan korban terbanyak berdasarkan filter yang sedang aktif.
+- **Chart 1: Tren Kematian Tahunan (Line Chart)** - Menampilkan pergerakan total kematian dari tahun ke tahun secara keseluruhan maupun terbagi berdasarkan kategori (Penyakit & Bencana Non-Alam, Bencana Alam, dan Bencana Sosial).
+- **Chart 2: Proporsi Kategori Kematian (Doughnut Chart)** - Menampilkan persentase perbandingan antara kategori penyebab kematian di Indonesia.
+- **Chart 3: 10 Penyebab Kematian Terbesar (Horizontal Bar Chart)** - Peringkat 10 penyebab kematian spesifik dengan korban terbanyak berdasarkan filter yang sedang aktif.
 - **Fitur Interaktif**: 
   - *Filter Dropdown Tipe*: Memilih kategori tertentu (Penyakit, Bencana Alam, Bencana Sosial) untuk memperbarui semua chart secara instan.
   - *Pencarian Tekstual*: Menyaring data penyebab kematian berdasarkan ketikan pengguna.
