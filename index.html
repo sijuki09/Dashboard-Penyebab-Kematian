@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Visualisasi Penyebab Kematian di Indonesia</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Dashboard interaktif visualisasi penyebab kematian di Indonesia periode 2000-2021 menggunakan Chart.js. Proyek Akhir CAK4XBB3 Visualisasi Data Telkom University.">
+  <meta name="keywords" content="visualisasi data, indonesia, penyebab kematian, bps, kemkes, chart.js, telkom university">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="dashboard-container">
+    
+    <!-- Header -->
+    <header>
+      <div class="header-top">
+        <div class="header-title-section">
+          <div class="badge-university">Telkom University</div>
+          <h1 id="main-title">Penyebab Kematian di Indonesia</h1>
+          <p>Analisis Interaktif Laporan Profil Kesehatan Nasional & COVID-19 (2000 - 2021)</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Filters Section -->
+    <section class="filter-bar" id="filters-section">
+      <!-- Category Filter -->
+      <div class="filter-group">
+        <label for="type-filter" class="filter-label">Kategori Penyebab</label>
+        <select id="type-filter" class="select-custom">
+          <option value="all">Semua Kategori (Tipe)</option>
+          <option value="Bencana Non Alam dan Penyakit">Penyakit & Bencana Non-Alam</option>
+          <option value="Bencana Alam">Bencana Alam</option>
+          <option value="Bencana Sosial">Bencana Sosial</option>
+        </select>
+      </div>
+      
+      <!-- Search Input -->
+      <div class="filter-group">
+        <label for="search-input" class="filter-label">Cari Penyebab</label>
+        <input type="text" id="search-input" class="input-custom" placeholder="Ketik nama penyakit / bencana...">
+      </div>
+      
+      <!-- Year Range Slider -->
+      <div class="filter-group">
+        <label for="year-slider" class="filter-label">Tahun Hingga: <span id="year-display" class="year-display">2021</span></label>
+        <div class="slider-container">
+          <input type="range" id="year-slider" class="range-slider" min="2000" max="2021" value="2021">
+        </div>
+      </div>
+    </section>
+
+    <!-- KPI Metrics Cards Row -->
+    <section class="kpi-row" id="kpis-section">
+      <!-- Card 1: Total Deaths -->
+      <div class="kpi-card" id="kpi-total-deaths">
+        <div class="kpi-header">
+          <span class="kpi-title">Total Kematian Terlapor</span>
+          <div class="kpi-icon">
+            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="kpi-value" id="total-deaths">0</div>
+        <div class="kpi-footer">
+          <span>Jiwa terakumulasi dari data terpilih</span>
+        </div>
+      </div>
+
+      <!-- Card 2: Top Category -->
+      <div class="kpi-card bencana-alam" id="kpi-top-category">
+        <div class="kpi-header">
+          <span class="kpi-title">Tipe Kematian Terbesar</span>
+          <div class="kpi-icon">
+            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="kpi-value" id="top-category" style="font-size: 1.6rem; padding: 0.4rem 0;">-</div>
+        <div class="kpi-footer">
+          <span>Kategori dengan jumlah korban tertinggi</span>
+        </div>
+      </div>
+
+      <!-- Card 3: Top Specific Cause -->
+      <div class="kpi-card bencana-sosial" id="kpi-top-cause">
+        <div class="kpi-header">
+          <span class="kpi-title">Kasus Tertinggi Spesifik</span>
+          <div class="kpi-icon">
+            <svg style="width: 20px; height: 20px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="kpi-value" id="top-cause" style="font-size: 1.6rem; padding: 0.4rem 0;">-</div>
+        <div class="kpi-footer">
+          <span>Penyebab tunggal paling mematikan</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Charts Grid Layout -->
+    <section class="charts-grid" id="visualizations-section">
+      <!-- 1. Line Chart (Trends over time) -->
+      <div class="chart-card col-8" id="chart-trends">
+        <div class="chart-header">
+          <div>
+            <h2 class="chart-title">Tren Kematian Tahunan</h2>
+            <p class="chart-subtitle">Grafik fluktuasi total jiwa dari tahun ke tahun berdasarkan filter aktif</p>
+          </div>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="lineChart"></canvas>
+        </div>
+      </div>
+
+      <!-- 2. Doughnut Chart (Distribution) -->
+      <div class="chart-card col-4" id="chart-distribution">
+        <div class="chart-header">
+          <div>
+            <h2 class="chart-title">Proporsi Kategori</h2>
+            <p class="chart-subtitle">Persentase kontribusi kematian menurut tipe bencana/penyakit</p>
+          </div>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="doughnutChart"></canvas>
+        </div>
+      </div>
+
+      <!-- 3. Horizontal Bar Chart (Top 10 causes) -->
+      <div class="chart-card col-12" id="chart-top-causes">
+        <div class="chart-header">
+          <div>
+            <h2 class="chart-title">10 Penyebab Kematian Terbesar</h2>
+            <p class="chart-subtitle">Peringkat 10 penyebab kematian dengan jumlah korban tertinggi berdasarkan filter yang dipilih</p>
+          </div>
+        </div>
+        <div class="chart-wrapper" style="min-height: 320px;">
+          <canvas id="barChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Raw Data Table Grid -->
+    <section class="data-table-section" id="data-table-section">
+      <div class="table-controls">
+        <div class="table-title-group">
+          <h2>Tabel Dataset Rincian</h2>
+          <p>Menampilkan baris data riil hasil pembersihan dari Kemenkes RI (Profil Kesehatan Indonesia)</p>
+        </div>
+      </div>
+      
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 30%;">Penyebab Kematian</th>
+              <th style="width: 25%;">Tipe</th>
+              <th style="width: 10%;">Tahun</th>
+              <th style="width: 15%; text-align: right;">Jumlah Kematian</th>
+              <th style="width: 20%;">Sumber Laporan</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Dynamic data will be generated by app.js -->
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Pagination Controls -->
+      <div class="pagination-container">
+        <div class="pagination-info" id="page-info">Halaman 1 dari 1 (Total: 0 baris)</div>
+        <div class="pagination-buttons">
+          <button id="prev-page" class="btn-pagination" disabled>Sebelumnya</button>
+          <button id="next-page" class="btn-pagination" disabled>Berikutnya</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer-section">
+      <div class="footer-left">
+        <p class="footer-source">Sumber Data: <a href="https://www.kaggle.com/datasets/hendratno/cause-of-death-in-indonesia" target="_blank">Kaggle - Causes of Death in Indonesia</a> (Oleh: Hendratno)</p>
+        <p>Data asli berasal dari Buku Profil Kesehatan Indonesia (Kementerian Kesehatan Republik Indonesia) tahun 2004 s.d. 2021.</p>
+      </div>
+      <div class="footer-right">
+        <p>Proyek Akhir Kelas Visualisasi Data (CAK4XBB3)</p>
+        <p>&copy; 2026 Kelompok 1 · Fakultas Informatika · Universitas Telkom</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Main Controller Logic JS -->
+  <script src="app.js"></script>
+</body>
+</html>
