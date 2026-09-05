@@ -1,42 +1,52 @@
-# Dashboard Visualisasi Penyebab Kematian di Indonesia
+# Dashboard Visualization of Causes of Death in Indonesia
 
-> Dashboard interaktif yang memvisualisasikan data tren dan penyebab kematian di Indonesia berdasarkan data resmi Profil Kesehatan Kementerian Kesehatan RI tahun 2000–2021.
+> An interactive dashboard that visualizes trends and causes of death in Indonesia based on data from the Indonesian Ministry of Health's Health Profile reports covering 2000 to 2021.
 
-## Isi Dashboard
-- **Chart 1: Tren Kematian Tahunan (Line Chart)** - Menampilkan pergerakan total kematian dari tahun ke tahun secara keseluruhan maupun terbagi berdasarkan kategori (Penyakit & Bencana Non-Alam, Bencana Alam, dan Bencana Sosial).
-- **Chart 2: Proporsi Kategori Kematian (Doughnut Chart)** - Menampilkan persentase perbandingan antara kategori penyebab kematian di Indonesia.
-- **Chart 3: 10 Penyebab Kematian Terbesar (Horizontal Bar Chart)** - Peringkat 10 penyebab kematian spesifik dengan korban terbanyak berdasarkan filter yang sedang aktif.
-- **Fitur Interaktif**: 
-  - *Filter Dropdown Tipe*: Memilih kategori tertentu (Penyakit, Bencana Alam, Bencana Sosial) untuk memperbarui semua chart secara instan.
-  - *Pencarian Tekstual*: Menyaring data penyebab kematian berdasarkan ketikan pengguna.
-  - *Slider Rentang Tahun*: Membatasi visualisasi hingga tahun tertentu secara dinamis.
-  - *Legend Toggle*: Klik legend pada Line Chart untuk menyembunyikan/menampilkan grafik per tipe.
-  - *Interactive Tooltips*: Menampilkan angka detail riil saat hover di atas grafik Chart.js.
-  - *Tabel Rincian Paginated*: Menampilkan tabel baris data riil dengan pagination responsif.
-- **Animasi**:
-  - *Entrance Chart.js Animation*: Chart dimuat dengan animasi transisi bawaan.
-  - *Count-up Number*: Angka KPI (Total Kematian) berhitung naik dari 0 ke nilai akhir saat halaman dibuka atau saat filter berubah.
-  - *CSS Fade-in*: Seluruh dashboard dimuat secara estetik menggunakan animasi fade-in `@keyframes`.
+## Dashboard Overview
 
-## Sumber Data
-- **Nama dataset**: Causes of Death in Indonesia (2000 - 2021) oleh Hendratno.
-- **URL sumber**: [Kaggle - Causes of Death in Indonesia](https://www.kaggle.com/datasets/hendratno/cause-of-death-in-indonesia) yang dikompilasi dari Laporan Buku Profil Kesehatan Indonesia (Kemenkes RI).
+* **Chart 1: Annual Death Trends (Line Chart)** - Visualizes the changes in total deaths over time, both overall and by category, including Diseases & Non-Natural Disasters, Natural Disasters, and Social Disasters.
+* **Chart 2: Death Category Proportion (Doughnut Chart)** - Shows the percentage distribution of deaths across different cause categories.
+* **Chart 3: Top 10 Causes of Death (Horizontal Bar Chart)** - Ranks the 10 specific causes of death with the highest number of reported deaths based on the selected filters.
+* **Interactive Features**:
 
-## Cara Jalankan di Lokal
+  * *Type Filter Dropdown*: Selects a specific category, including Diseases, Natural Disasters, or Social Disasters, and dynamically updates the dashboard visualizations.
+  * *Text Search*: Filters causes of death based on user input.
+  * *Year Range Slider*: Dynamically limits the visualization to a selected year range.
+  * *Legend Toggle*: Allows individual categories to be shown or hidden directly from the Line Chart legend.
+  * *Interactive Tooltips*: Displays detailed values when hovering over data points in the Chart.js visualizations.
+  * *Paginated Data Table*: Provides access to detailed records with responsive pagination.
+* **Animations**:
 
-### Jalur A (Static - Paling Cepat):
-1. Buka file [index.html](file:/index.html) langsung di web browser pilihan Anda (Google Chrome, Firefox, Safari, Edge).
-2. Atau klik kanan pada `index.html` dan pilih **Open with Live Server** di VS Code untuk reload otomatis.
+  * *Chart.js Entrance Animation*: Charts load with smooth built-in transition animations.
+  * *Count-up Numbers*: KPI values, including Total Deaths, animate from zero to their final values when the dashboard loads or filters are changed.
+  * *CSS Fade-in*: Dashboard elements are introduced with smooth CSS fade-in animations using `@keyframes`.
 
-### Jalur B (Server - Menggunakan Static Server):
-Jika ingin menjalankan dalam mode server lokal sederhana:
+## Data Source
+
+* **Dataset**: Causes of Death in Indonesia (2000 - 2021) by Hendratno.
+* **Source**: [Kaggle - Causes of Death in Indonesia](https://www.kaggle.com/datasets/hendratno/cause-of-death-in-indonesia)
+* The dataset was compiled from the Indonesian Ministry of Health's *Health Profile of Indonesia* reports.
+
+## Running Locally
+
+### Option A: Static
+
+1. Open `index.html` directly in a modern web browser such as Google Chrome, Firefox, Safari, or Microsoft Edge.
+2. Alternatively, open the project in Visual Studio Code and use the **Live Server** extension for automatic browser reloading.
+
+### Option B: Static Server
+
+The dashboard can also be served using a simple local static server:
+
 ```bash
 npm install -g serve
 serve .
 ```
-Buka `http://localhost:3000` di browser Anda.
 
-## Teknologi
-- **Chart.js** (Visualisasi data interaktif via CDN)
-- **HTML5 & CSS3** (Tata letak grid responsif, variabel CSS, dan glassmorphic UI)
-- **Vanilla JavaScript** (State filter, pengolahan agregasi data, dan animasi count-up)
+Then open the local address provided by the server in a web browser.
+
+## Technology
+
+* **Chart.js**: Interactive data visualization through CDN
+* **HTML5 & CSS3**: Responsive grid layout, CSS variables, and glassmorphic UI
+* **Vanilla JavaScript**: Dashboard state management, data aggregation, filtering, and count-up animations
